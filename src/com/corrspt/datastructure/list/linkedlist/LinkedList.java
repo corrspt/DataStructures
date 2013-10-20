@@ -18,7 +18,16 @@ public class LinkedList<E> implements List<E>{
 
 	@Override
 	public boolean add(E e) {
-		// TODO Auto-generated method stub
+		if (size == 0){
+			ListElement<E> elem = new ListElement<E>(e);
+			head = elem;
+			tail = elem;
+			size++;
+			return true;
+		}
+		//insert at head
+		//insert at tail
+		//insert in middle
 		return false;
 	}
 
@@ -60,7 +69,18 @@ public class LinkedList<E> implements List<E>{
 
 	@Override
 	public E get(int index) {
-		// TODO Auto-generated method stub
+		if (index < 0 || index > size)
+			throw new IllegalArgumentException();
+		if (index == 0){
+			return head.getElement();
+		} else if (index == size -1){
+			return tail.getElement();
+		}
+		
+		for (int i = 0 ; i < size - 1; i++ ){
+			
+		}
+		
 		return null;
 	}
 

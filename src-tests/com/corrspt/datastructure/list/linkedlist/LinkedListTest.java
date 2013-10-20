@@ -3,13 +3,46 @@ package com.corrspt.datastructure.list.linkedlist;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Categories.ExcludeCategory;
 
 public class LinkedListTest {
 
 	@Test
-	public void testLinkedList() {
+	public void empty_list_size() {
 		LinkedList<String> sut = new LinkedList<String>();
-		assertTrue(sut.size() == 0);
+		assertTrue("List should be empty",sut.size() == 0);
 	}
 
+	@Test
+	public void one_element_size(){
+		LinkedList<String> sut = new LinkedList<String>();
+		sut.add("random");
+		String element = sut.get(0);
+		assertTrue("List should have one element",sut.size() == 1);
+		assertTrue("Did not return 'random' string", "random".equals(element));
+	}
+	
+	@Test
+	public void two_element_size(){
+		LinkedList<String> sut = new LinkedList<String>();
+		sut.add("random");
+		sut.add("second");
+		String first = sut.get(0);
+		String second = sut.get(1);
+		assertTrue("List should have two elements",sut.size() == 2);
+		assertTrue("Did not return 'random' string", "random".equals(first));
+		assertTrue("Did not return 'second' string", "random".equals(second));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void negative_index_throws_exception(){
+		LinkedList<String> sut = new LinkedList<String>();
+		sut.get(-1);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void oversize_index_throws_exception(){
+		LinkedList<String> sut = new LinkedList<String>();
+		sut.get(sut.size() + 1);
+	}
 }
