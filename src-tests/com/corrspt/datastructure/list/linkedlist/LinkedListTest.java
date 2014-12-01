@@ -23,7 +23,7 @@ public class LinkedListTest {
 	}
 	
 	@Test
-	public void two_element_size(){
+	public void two_element_size_and_get(){
 		LinkedList<String> sut = new LinkedList<String>();
 		sut.add("random");
 		sut.add("second");
@@ -31,7 +31,7 @@ public class LinkedListTest {
 		String second = sut.get(1);
 		assertTrue("List should have two elements",sut.size() == 2);
 		assertTrue("Did not return 'random' string", "random".equals(first));
-		assertTrue("Did not return 'second' string", "random".equals(second));
+		assertTrue("Did not return 'second' string", "second".equals(second));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -45,4 +45,20 @@ public class LinkedListTest {
 		LinkedList<String> sut = new LinkedList<String>();
 		sut.get(sut.size() + 1);
 	}
+	
+	@Test
+	public void clear_list() throws Exception {
+		
+		LinkedList<String> sut = new LinkedList<String>();
+		
+		sut.add("Test");
+		sut.add("Before");
+		
+		assertTrue( sut.size() > 0 );
+		
+		sut.clear();
+		
+		assertTrue("After clear, size should be zero", sut.size() == 0 );
+	}
+	
 }

@@ -24,10 +24,12 @@ public class LinkedList<E> implements List<E>{
 			tail = elem;
 			size++;
 			return true;
+		} else {
+			ListElement<E> lastElement = new ListElement<E>(e);
+			tail.setNext(lastElement);
+			tail = lastElement;
+			size++;
 		}
-		//insert at head
-		//insert at tail
-		//insert in middle
 		return false;
 	}
 
@@ -51,8 +53,9 @@ public class LinkedList<E> implements List<E>{
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		this.head = null;
+		this.tail = null;
+		size = 0;
 	}
 
 	@Override
@@ -77,8 +80,12 @@ public class LinkedList<E> implements List<E>{
 			return tail.getElement();
 		}
 		
+		ListElement<E> current = head;
 		for (int i = 0 ; i < size - 1; i++ ){
-			
+			current = current.getNext();
+			if (i == index){
+				return current.getElement();
+			}
 		}
 		
 		return null;
@@ -92,8 +99,7 @@ public class LinkedList<E> implements List<E>{
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return size == 0;
 	}
 
 	@Override
